@@ -1,0 +1,34 @@
+Package: RTLappDynamics
+Title: Pricing Dynamics
+Version: 0.0.0.9000
+Authors@R: person('Philippe', 'Cote', email = 'pcote@ualberta.ca', role = c('cre', 'aut'))
+Description: An interactive journey in the analytics of commodities trading.
+License: MIT + file LICENSE
+Imports: 
+    config (>= 0.3.1),
+    ggtext,
+    golem (>= 0.3.1),
+    gridExtra,
+    lubridate,
+    plotly,
+    processx,
+    rlang,
+    RTL,
+    shinipsum,
+    shiny (>= 1.7.1),
+    thinkr,
+    tibbletime,
+    timetk
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.2
+Suggests: 
+    rmarkdown,
+    knitr,
+    spelling,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Language: en-US
+URL: https://github.com/risktoollib/RTLappDynamics.git
+BugReports: https://github.com/risktoollib/RTLappDynamics.git/issues
+VignetteBuilder: knitr
