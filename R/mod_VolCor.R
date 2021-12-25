@@ -11,8 +11,6 @@ mod_VolCor_ui <- function(id){
   ns <- NS(id)
   tagList(
     shiny::plotOutput(ns("plot"))
-
-
   )
 }
 
