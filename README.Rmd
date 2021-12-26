@@ -15,17 +15,17 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/risktoollib/RTLappDynamics/workflows/R-CMD-check/badge.svg)](https://github.com/risktoollib/RTLappDynamics/actions)
-[![Codecov test coverage](https://codecov.io/gh/risktoollib/RTLappDynamics/branch/master/graph/badge.svg)](https://app.codecov.io/gh/risktoollib/RTLappDynamics?branch=master)
 <!-- badges: end -->
 
-***Part of a series of Shiny applications to support education of risk managers and trading analysts in Universities and commodity-trading enterprise.***
+***Part of a series of Shiny Apps to support education of risk managers and trading analysts in Universities and commodity-trading enterprises.***
 
-# Goals
+# Why this app?
 
-This appl
+It was designed and shared publicly to support the following:
 
-The goal of RTLappDynamics
++ Support a live walk-though of the dynamics of commodity markets by an experienced market professional. Whether this a non-technical audience or at the start of technical training risk managers or trading analysts, these concepts are critical to anyone with either interest or current governance accountability in these markets.
 
++ Part of class material in learning `shiny` app deployment where we start with the simple app and transform it into a `package` using [golem](https://github.com/ThinkR-open/golem).
 
 ## Installation
 
@@ -34,17 +34,11 @@ You can install the development version of RTLappDynamics from [GitHub](https://
 ``` r
 # install.packages("devtools")
 devtools::install_github("risktoollib/RTLappDynamics")
-
 ```
 
-## Example
+## Running the app
 
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
+``` r
 library(RTLappDynamics)
 RTLappDynamics::run_app()
 ```
-
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this. You could also use GitHub Actions to re-render `README.Rmd` every time you push. An example workflow can be found here: <https://github.com/r-lib/actions/tree/v1/examples>.

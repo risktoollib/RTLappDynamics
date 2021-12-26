@@ -10,7 +10,7 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # UI logic
     titlePanel("Commodities Pricing Dynamics"),
-    tags$h5(tags$span(style = "color:blue;font-style:italic", "developed by pcote@ualberta.ca for Commodity Analytics and Trading classes.")),
+    tags$h5(tags$span(style = "color:blue;font-style:italic", "Developed by pcote@ualberta.ca for University of Alberta Finance classes.")),
     tags$h5(tags$span(style = "color:orange", "Units are $/bbl for oil & products, $/mmBtu for NG.")),
     shiny::radioButtons("contract","Select Contract",choices = unique(gsub(pattern = "[0-9]+",replacement = "",x = RTL::dflong$series))[1:6],selected = "BRN", inline = TRUE),
     shiny::tabsetPanel(
