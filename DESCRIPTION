@@ -2,7 +2,7 @@ Package: RTLappDynamics
 Title: Pricing Dynamics
 Version: 0.0.0.9000
 Authors@R: person('Philippe', 'Cote', email = 'pcote@ualberta.ca', role = c('cre', 'aut'))
-Description: An interactive journey in the analytics of commodities trading.
+Description: An interactive journey into commodity trading.
 License: MIT + file LICENSE
 Imports: 
     config (>= 0.3.1),
@@ -26,7 +26,8 @@ Suggests:
     rmarkdown,
     knitr,
     spelling,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    covr
 Config/testthat/edition: 3
 Language: en-US
 URL: https://github.com/risktoollib/RTLappDynamics.git

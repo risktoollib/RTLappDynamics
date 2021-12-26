@@ -35,10 +35,14 @@ usethis::use_package("rlang")
 
 ## Add modules ----
 ## Create a module infrastructure in R/
-golem::add_module( name = "CurveDynamics" ) # Name of the module
-golem::add_module( name = "VolCor" ) # Name of the module
-golem::add_module( name = "Betas" ) # Name of the module
-golem::add_module( name = "SpreadDynamics" ) # Name of the module
+
+golem::add_module( name = "datLong" )
+golem::add_module( name = "datWide" )
+
+golem::add_module( name = "CurveDynamics" )
+golem::add_module( name = "VolCor" )
+golem::add_module( name = "Betas" )
+golem::add_module( name = "SpreadDynamics" )
 
 
 ## Add helper functions ----
