@@ -7,7 +7,9 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-mod_SpreadDynamics_ui <- function(id){
+#' @rawNamespace import(plotly, except = last_plot)
+
+mod_SpreadDynamics_ui <- function(id, r){
   ns <- NS(id)
   tagList(
     shiny::column(
@@ -38,7 +40,7 @@ mod_SpreadDynamics_ui <- function(id){
 #' @noRd
 mod_SpreadDynamics_server <- function(id){
   moduleServer( id, function(input, output, session){
-    ns <- session$ns
+    ns <- session$ns # WHY WE DON'T NEED THIS ANYMORE
     output$structFlatPrice <- renderPlot({
       shinipsum::random_ggplot()
     })

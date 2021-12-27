@@ -7,6 +7,7 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
+#' @import RTL
 
 mod_CurveDynamics_ui <- function(id){
   ns <- NS(id)
@@ -27,6 +28,7 @@ mod_CurveDynamics_ui <- function(id){
 #'
 #' @noRd
 mod_CurveDynamics_server <- function(id, r) {
+
   moduleServer(id,
                function(input, output, session) {
                  output$fwdCurve <-  renderPlot({

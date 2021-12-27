@@ -22,17 +22,23 @@ attachment::att_from_rscripts()
 usethis::use_package("shinipsum")
 usethis::use_package("thinkr")
 usethis::use_package("shiny")
+usethis::use_package("RTL")
 usethis::use_package("dplyr")
 usethis::use_package("tidyr")
-#usethis::use_package("tidyverse")
-usethis::use_package("RTL")
-usethis::use_package("plotly")
+usethis::use_package("ggplot2")
+usethis::use_package("scales")
 usethis::use_package("ggtext")
-usethis::use_package("gridExtra")
+usethis::use_package("plotly")
 usethis::use_package("tibbletime")
-usethis::use_package("timetk")
 usethis::use_package("lubridate")
 usethis::use_package("rlang")
+usethis::use_package("zoo")
+usethis::use_package("PerformanceAnalytics")
+usethis::use_package("timetk")
+usethis::use_package("readr")
+
+### not added yet
+
 
 
 ## Add modules ----

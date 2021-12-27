@@ -3,7 +3,7 @@
 #' @description A shiny Module.
 #'
 #' @param id,input,output,session Internal parameters for {shiny}.
-#' @param r a `reactiveValues()` list returning the choice of contract, datWide and datLong
+#' @param r a list returning reactiveValues given the choice of contract.
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
@@ -26,10 +26,13 @@ mod_contract_server <- function(id, r) {
   moduleServer(id,
                function(input, output, session) {
                  shiny::observeEvent(input$contract, {
+
                    # assigns selected contract code
                    r$contract <- input$contract
+
                    # avoid no visible bindings for local vars
-                   dflong <- series <- value <- NULL
+                   dflong <- series <- value <- c1c2 <- fp <- . <- NULL
+
                    # assigns computed datLong
                    tmp <- RTL::dflong %>%
                      dplyr::mutate(value = case_when(
@@ -42,10 +45,12 @@ mod_contract_server <- function(id, r) {
                      tmp <- tmp %>% dplyr::filter(date != "2020-04-20")
                    }
                    r$datLong <- tmp
-                   # assigns computed datLong
+
+                   # assigns computed datWide
                    r$datWide <- tmp %>%
                      dplyr::filter(grepl(input$contract, series)) %>%
                      tidyr::pivot_wider(names_from = series, values_from = value)
+
                    # assigns cmdty for RTL::expiry_table
                    if (input$contract == "CL") {r$cmdty <- "cmewti"}
                    if (input$contract == "HO") {r$cmdty <- "cmeulsd"}
@@ -54,6 +59,51 @@ mod_contract_server <- function(id, r) {
                    if (input$contract == "BRN") {r$cmdty <- "cmebrent"}
                    if (input$contract == "ALI") {r$cmdty <- "comexalu"}
                    if (input$contract == "WCW") {r$cmdty <- "cmewti"}
+
+                   # assigns computed retWide log returns
+                   tmp <-
+                     RTL::returns(
+                       df = r$datLong,
+                       retType = "rel",
+                       period.return = 1,
+                       spread = TRUE
+                     )
+                   r$retWide <- RTL::rolladjust(
+                     x = tmp,
+                     commodityname = r$cmdty,
+                     rolltype = c("Last.Trade")
+                   )
+
+                   # assigns computed retWide Absolute returns
+                   tmp <-
+                     RTL::returns(
+                       df = r$datLong,
+                       retType = "abs",
+                       period.return = 1,
+                       spread = TRUE
+                     )
+                   r$retWideAbs <- RTL::rolladjust(
+                     x = tmp,
+                     commodityname = r$cmdty,
+                     rolltype = c("Last.Trade")
+                   )
+
+                   # assigns computed spdDynamics
+                   tmp <- r$datWide %>%
+                     dplyr::transmute(
+                       date,
+                       fp = .[[2]],
+                       fpChange = .[[2]] - dplyr::lag(.[[2]], n = 1),
+                       c1c2 = .[[2]] - .[[3]],
+                       c2c3 = .[[3]] - .[[4]],
+                       c3c4 = .[[4]] - .[[5]],
+                       c4c5 = .[[5]] - .[[6]],
+                       c5c6 = .[[6]] - .[[7]],
+                       c1c6 = .[[2]] - .[[7]]
+                     ) %>% tidyr::drop_na()
+                   tmp <- RTL::rolladjust(x = tmp,commodityname = r$cmdty,rolltype = c("Last.Trade"))
+                   if (r$cmdty == "cmewti") { tmp <- tmp %>% dplyr::filter(fp > 0, abs(c1c2) < 10)}
+                   r$spdDynamics <- tmp
                  })
                })
 }
