@@ -1,11 +1,12 @@
 Package: RTLappDynamics
-Title: Pricing Dynamics
+Title: Commodity Pricing Dynamics
 Version: 0.0.0.9000
 Authors@R: person('Philippe', 'Cote', email = 'pcote@ualberta.ca', role = c('cre', 'aut'))
 Description: An interactive journey into commodity trading.
 License: MIT + file LICENSE
 Imports: 
     config (>= 0.3.1),
+    dplyr,
     ggtext,
     golem (>= 0.3.1),
     gridExtra,
@@ -18,6 +19,7 @@ Imports:
     shiny (>= 1.7.1),
     thinkr,
     tibbletime,
+    tidyr,
     timetk
 Encoding: UTF-8
 LazyData: true

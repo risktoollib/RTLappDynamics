@@ -18,7 +18,7 @@ mod_CurveDynamics_ui <- function(id){
                   tags$h5(tags$span(style = "color:purple;font-style:italic", "+ What can you infer from the volality of the front contract?")),
                   tags$h5(tags$span(style = "color:purple;font-style:italic", "+ How is the forward curve moving along with flat price and why?")),
                   tags$h5(tags$span(style = "color:purple;font-style:italic", "+ ...")),
-                  shiny::plotOutput(ns("plot"))
+                  shiny::plotOutput(ns("fwdCurve"))
   )
   )
 }
@@ -26,13 +26,23 @@ mod_CurveDynamics_ui <- function(id){
 #' CurveDynamics Server Functions
 #'
 #' @noRd
-mod_CurveDynamics_server <- function(id){
-  moduleServer( id, function(input, output, session){
-    ns <- session$ns
-    output$plot <- renderPlot({
-      shinipsum::random_ggplot()
-    })
-  })
+mod_CurveDynamics_server <- function(id, r) {
+  moduleServer(id,
+               function(input, output, session) {
+                 output$fwdCurve <-  renderPlot({
+                   df <- r$datWide
+                   cmdty <- r$cmdty
+                   RTL::chart_fwd_curves(
+                     df = df,
+                     cmdty = cmdty,
+                     weekly = TRUE,
+                     main = "Forward Curves",
+                     ylab = "$ per bbl",
+                     xlab = "",
+                     cex = 2
+                   )
+                 })
+               })
 }
 
 ## To be copied in the UI

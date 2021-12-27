@@ -22,7 +22,9 @@ attachment::att_from_rscripts()
 usethis::use_package("shinipsum")
 usethis::use_package("thinkr")
 usethis::use_package("shiny")
-usethis::use_package("tidyverse")
+usethis::use_package("dplyr")
+usethis::use_package("tidyr")
+#usethis::use_package("tidyverse")
 usethis::use_package("RTL")
 usethis::use_package("plotly")
 usethis::use_package("ggtext")
@@ -36,9 +38,12 @@ usethis::use_package("rlang")
 ## Add modules ----
 ## Create a module infrastructure in R/
 
-golem::add_module( name = "datLong" )
-golem::add_module( name = "datWide" )
+# inputs modules
+golem::add_module( name = "contract" )
+#golem::add_module( name = "datLong" )
+#golem::add_module( name = "datWide" )
 
+# compute modules
 golem::add_module( name = "CurveDynamics" )
 golem::add_module( name = "VolCor" )
 golem::add_module( name = "Betas" )
