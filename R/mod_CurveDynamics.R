@@ -20,7 +20,7 @@ mod_CurveDynamics_ui <- function(id){
                   tags$h5(tags$span(style = "color:purple;font-style:italic", "+ How is the forward curve moving along with flat price and why?")),
                   tags$h5(tags$span(style = "color:purple;font-style:italic", "+ ...")),
                   shiny::plotOutput(ns("fwdCurve"))
-  )
+                  )
   )
 }
 

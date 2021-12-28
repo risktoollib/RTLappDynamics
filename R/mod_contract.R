@@ -31,7 +31,7 @@ mod_contract_server <- function(id, r) {
                    r$contract <- input$contract
 
                    # avoid no visible bindings for local vars
-                   dflong <- series <- value <- c1c2 <- fp <- . <- NULL
+                   dflong <- series <- value <- c1c2 <- fp <- . <- x <- NULL
 
                    # assigns computed datLong
                    tmp <- RTL::dflong %>%
@@ -104,6 +104,13 @@ mod_contract_server <- function(id, r) {
                    tmp <- RTL::rolladjust(x = tmp,commodityname = r$cmdty,rolltype = c("Last.Trade"))
                    if (r$cmdty == "cmewti") { tmp <- tmp %>% dplyr::filter(fp > 0, abs(c1c2) < 10)}
                    r$spdDynamics <- tmp
+
+                   # assigns data for RTL::promptBeta in Betas tab
+                   betas <- r$datLong %>% dplyr::mutate(series = readr::parse_number(series)) %>% dplyr::group_by(series)
+                   betas <- RTL::returns(df = betas,retType = "abs",period.return = 1,spread = TRUE)
+                   betas <- RTL::rolladjust(x = betas,commodityname = r$cmdty,rolltype = c("Last.Trade"))
+                   r$betas <- betas %>% dplyr::filter(!grepl("2020-04-20|2020-04-21",date))
+
                  })
                })
 }

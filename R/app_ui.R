@@ -15,14 +15,10 @@ app_ui <- function(request) {
     mod_contract_ui("contract_ui_1"),
     shiny::tabsetPanel(
      type = "tabs",
-     shiny::tabPanel("Forward Curve",
-                     mod_CurveDynamics_ui("CurveDynamics_ui_1")),
-     shiny::tabPanel("Volatility and Correlation",
-                     mod_VolCor_ui("VolCor_ui_1")),
-     shiny::tabPanel("Betas",
-                     mod_Betas_ui("Betas_ui_1")),
-     shiny::tabPanel("Spread Dynamics",
-                     mod_SpreadDynamics_ui("SpreadDynamics_ui_1"))
+     shiny::tabPanel("Forward Curve", mod_CurveDynamics_ui("CurveDynamics_ui_1")),
+     shiny::tabPanel("Volatility and Correlation", mod_VolCor_ui("VolCor_ui_1")),
+     shiny::tabPanel("Betas", mod_Betas_ui("Betas_ui_1")),
+     shiny::tabPanel("Spread Dynamics", mod_SpreadDynamics_ui("SpreadDynamics_ui_1"))
     )
   )
 }
