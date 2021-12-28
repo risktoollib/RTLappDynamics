@@ -10,7 +10,8 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # UI logic
     titlePanel("Commodities Pricing Dynamics"),
-    tags$h5(tags$span(style = "color:blue;font-style:italic", "Developed by pcote@ualberta.ca for University of Alberta Finance classes.")),
+    tags$h5(tags$span(style = "color:blue;font-style:italic", "Created by pcote@ualberta.ca"),
+            tags$a(href="https://www.linkedin.com/in/philippe-cote-88b1769/",icon("linkedin","My Profile",target = "_blank"))),
     tags$h5(tags$span(style = "color:orange", "Units are $/bbl for oil & products, $/mmBtu for NG.")),
     mod_contract_ui("contract_ui_1"),
     shiny::tabsetPanel(

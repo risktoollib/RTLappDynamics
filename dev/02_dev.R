@@ -13,8 +13,8 @@
 
 # Engineering
 
-download.file("https://www.w3schools.com/w3css/tryw3css_templates_dark_portfolio.htm", "inst/app/www/template.html")
-file.copy("~/core/hex/hex-dynamics.png", "inst/app/www/golem-hex_250.png")
+#download.file("https://www.w3schools.com/w3css/tryw3css_templates_dark_portfolio.htm", "inst/app/www/template.html")
+#file.copy("~/core/hex/hex-dynamics.png", "inst/app/www/golem-hex_250.png")
 
 ## Dependencies ----
 ## Add one line by package you want to add as dependency

@@ -1,6 +1,7 @@
 Package: RTLappDynamics
 Title: Commodity Pricing Dynamics
 Version: 0.0.0.9000
+Date: 2021-12-28
 Authors@R: person('Philippe', 'Cote', email = 'pcote@ualberta.ca', role = c('cre', 'aut'))
 Description: An interactive journey into commodity trading.
 License: MIT + file LICENSE
@@ -26,7 +27,6 @@ Imports:
     timetk,
     zoo
 Encoding: UTF-8
-LazyData: false
 RoxygenNote: 7.1.2
 Suggests: 
     rmarkdown,
@@ -36,6 +36,6 @@ Suggests:
     covr
 Config/testthat/edition: 3
 Language: en-US
-URL: https://github.com/risktoollib/RTLappDynamics.git
-BugReports: https://github.com/risktoollib/RTLappDynamics.git/issues
+URL: https://github.com/risktoollib/RTLappDynamics
+BugReports: https://github.com/risktoollib/RTLappDynamics/issues
 VignetteBuilder: knitr
