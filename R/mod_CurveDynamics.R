@@ -31,6 +31,7 @@ mod_CurveDynamics_server <- function(id, r) {
 
   moduleServer(id,
                function(input, output, session) {
+                 #browser()
                  output$fwdCurve <-  renderPlot({
                    df <- r$datWide
                    cmdty <- r$cmdty

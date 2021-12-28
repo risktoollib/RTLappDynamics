@@ -5,8 +5,7 @@
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
 #' @noRd
-#'
-#' @importFrom RTL returns rolladjust expiry_table promptBeta
+#' @import RTL
 #' @import shiny
 #' @rawNamespace import(plotly, except = last_plot)
 
@@ -37,6 +36,7 @@ mod_Betas_server <- function(id, r){
   moduleServer( id, function(input, output, session){
 
     ns <- session$ns # WHY WE DON'T NEED THIS ANYMORE
+    contract <- NULL
 
     output$hedgeRatios <- plotly::renderPlotly({
       RTL::promptBeta(x = r$betas, period = "all", betatype = "all", output = "chart")
