@@ -21,21 +21,17 @@ mod_VolCor_ui <- function(id){
                   tags$h5(tags$span(style = "color:purple;font-style:italic", "Why would think so in the context of economics?")),
                   shiny::plotOutput(ns("volByDelivery")),
                   plotly::plotlyOutput(ns("volBoxplot")),
-                  #plotOutput("vol1", height = "400px"),
-                  #plotly::plotlyOutput("vol2", height = "400px"),
                   tags$h3(tags$span(style = "color:blue", "Volatility is NOT constant through time")),
                   tags$h5(tags$span(style = "color:purple;font-style:italic", "What measure of RISK are you using to proxy UNCERTAINTY?")),
                   tags$h5(tags$span(style = "color:purple;font-style:italic", "What implications does it have for your analysis?")),
                   tags$h5(tags$span(style = "color:purple;font-style:italic", "What if you are using VaR with a 60-day window (sdroll in the chart)")),
                   plotly::plotlyOutput(ns("volMeasures")),
-                  #plotly::plotlyOutput("volInTime", height = "400px"),
                   tags$h3(tags$span(style = "color:blue", "Introducing Correlation")),
                   tags$h5(tags$span(style = "color:purple;font-style:italic", "Same grade, same delivery location, DIFFERENT delivery timing = Same information set.")),
                   tags$h5(tags$span(style = "color:purple;font-style:italic", "Correlation only informs the DIRECTIONAL relationship.")),
                   tags$h5(tags$span(style = "color:purple;font-style:italic", "Beware of using continuous contracts in seasonal commodities... Why?")),
                   tags$h5(tags$span(style = "color:purple;font-style:italic", "So what are the implications for spread trading? NEXT TAB")),
-                  #plotOutput("correlation", height = "600px"),
-                  shiny::plotOutput(ns("correlation"))
+                  shiny::plotOutput(ns("correlation"), height = "600px")
     )
   )
 }

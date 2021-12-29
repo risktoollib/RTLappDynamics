@@ -53,6 +53,7 @@ golem::add_module( name = "contract" )
 golem::add_module( name = "CurveDynamics" )
 golem::add_module( name = "VolCor" )
 golem::add_module( name = "Betas" )
+golem::add_module( name = "Seasonality" )
 golem::add_module( name = "SpreadDynamics" )
 
 

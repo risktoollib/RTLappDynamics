@@ -10,6 +10,7 @@ app_server <- function( input, output, session ) {
   r <- reactiveValues()
   mod_contract_server("contract_ui_1", r = r)
   mod_CurveDynamics_server("CurveDynamics_ui_1", r = r)
+  mod_Seasonality_server("Seasonality_ui_1")
   mod_VolCor_server("VolCor_ui_1", r = r)
   mod_VolCor_server("VolCor_ui_2", r = r)
   mod_VolCor_server("VolCor_ui_3", r = r)
@@ -17,7 +18,7 @@ app_server <- function( input, output, session ) {
   mod_Betas_server("Betas_ui_1", r = r)
   mod_Betas_server("Betas_ui_2", r = r)
   mod_Betas_server("Betas_ui_3", r = r)
-  mod_SpreadDynamics_server("SpreadDynamics_ui_1")
-  mod_SpreadDynamics_server("SpreadDynamics_ui_2")
-  mod_SpreadDynamics_server("SpreadDynamics_ui_3")
+  mod_SpreadDynamics_server("SpreadDynamics_ui_1", r = r)
+  mod_SpreadDynamics_server("SpreadDynamics_ui_2", r = r)
+  mod_SpreadDynamics_server("SpreadDynamics_ui_3", r = r)
 }

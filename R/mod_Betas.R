@@ -25,7 +25,6 @@ mod_Betas_ui <- function(id){
                   tags$h3(tags$span(style = "color:blue","Betas - Recent Trading Days")),
                   plotly::plotlyOutput(ns("betasCompare"))
                   )
-
   )
 }
 

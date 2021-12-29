@@ -13,7 +13,8 @@
 
 mod_contract_ui <- function(id){
   ns <- NS(id)
-  cc <- unique(gsub(pattern = "[0-9]+",replacement = "",x = RTL::dflong$series))[1:6]
+  cc <- sort(unique(gsub(pattern = "[0-9]+",replacement = "",x = RTL::dflong$series))[1:6])
+  cc <- cc[!cc %in% c("BRN","WCW")]
   tagList(
     shiny::radioButtons(ns("contract"),"Select Contract",choices = cc, selected = "CL", inline = TRUE),
   )
