@@ -36,6 +36,8 @@ usethis::use_package("zoo")
 usethis::use_package("PerformanceAnalytics")
 usethis::use_package("timetk")
 usethis::use_package("readr")
+usethis::use_package("bslib")
+
 
 ### not added yet
 

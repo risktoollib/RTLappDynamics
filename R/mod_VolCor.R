@@ -17,20 +17,24 @@ mod_VolCor_ui <- function(id){
   ns <- NS(id)
   tagList(
     shiny::column(12,
-                  tags$h3(tags$span(style = "color:blue", "Volatility is a function of Delivery Timing")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "Why would think so in the context of economics?")),
+                  tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Volatility is a function of Delivery Timing")),
+                  tags$h5(tags$span(style = "color:white;font-style:italic", "Why would think so in the context of economics?")),
                   shiny::plotOutput(ns("volByDelivery")),
                   plotly::plotlyOutput(ns("volBoxplot")),
-                  tags$h3(tags$span(style = "color:blue", "Volatility is NOT constant through time")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "What measure of RISK are you using to proxy UNCERTAINTY?")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "What implications does it have for your analysis?")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "What if you are using VaR with a 60-day window (sdroll in the chart)")),
+                  tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Volatility is NOT constant through time")),
+                  tags$ul(
+                    tags$li("What measure of RISK are you using to proxy UNCERTAINTY?"),
+                    tags$li("What implications does it have for your analysis?"),
+                    tags$li("What if you are using VaR with a 60-day window (sdroll in the chart)?")
+                  ),
                   plotly::plotlyOutput(ns("volMeasures")),
-                  tags$h3(tags$span(style = "color:blue", "Introducing Correlation")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "Same grade, same delivery location, DIFFERENT delivery timing = Same information set.")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "Correlation only informs the DIRECTIONAL relationship.")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "Beware of using continuous contracts in seasonal commodities... Why?")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "So what are the implications for spread trading? NEXT TAB")),
+                  tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Introducing Correlation")),
+                  tags$ul(
+                    tags$li("Same grade, same delivery location, DIFFERENT delivery timing = Same information set."),
+                    tags$li("Correlation only informs the DIRECTIONAL relationship."),
+                    tags$li("Beware of using continuous contracts in seasonal commodities... Why?"),
+                    tags$li("So what are the implications for spread trading? NEXT TAB")
+                  ),
                   shiny::plotOutput(ns("correlation"), height = "600px")
     )
   )

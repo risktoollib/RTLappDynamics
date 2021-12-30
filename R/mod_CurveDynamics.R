@@ -13,12 +13,13 @@ mod_CurveDynamics_ui <- function(id){
   ns <- NS(id)
   tagList(
     shiny::column(12,
-                  tags$h3(tags$span(style = "color:blue;font-style:italic", "...form your hypotheses of the pricing dynamics...")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "+ Root your thinking on fundamentals (SD Balance and the physical supply chain)")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "+ Forward prices are the expected spot price with today's information set.")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "+ What can you infer from the volality of the front contract?")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "+ How is the forward curve moving along with flat price and why?")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "+ ...")),
+                  tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Forming your hypotheses of the pricing dynamics")),
+                  tags$ul(
+                    tags$li("Root your thinking on fundamentals (SD Balance and the physical supply chain)"),
+                    tags$li("Forward prices are the expected spot price with today's information set."),
+                    tags$li("What can you infer from the volality of the front contract?"),
+                    tags$li("How is the forward curve moving along with flat price and why?")
+                  ),
                   shiny::plotOutput(ns("fwdCurve"))
                   )
   )
@@ -31,7 +32,7 @@ mod_CurveDynamics_server <- function(id, r) {
 
   moduleServer(id,
                function(input, output, session) {
-                 #browser()
+                # browser()
                  output$fwdCurve <-  renderPlot({
                    df <- r$datWide
                    cmdty <- r$cmdty
@@ -40,7 +41,7 @@ mod_CurveDynamics_server <- function(id, r) {
                      cmdty = cmdty,
                      weekly = TRUE,
                      main = "Forward Curves",
-                     ylab = "$ per bbl",
+                     ylab = ifelse(r$contract == "NG","$ per mmBTU","$ per bbl"),
                      xlab = "",
                      cex = 2
                    )

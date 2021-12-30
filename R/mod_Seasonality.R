@@ -11,15 +11,9 @@ mod_Seasonality_ui <- function(id){
   ns <- NS(id)
   tagList(shiny::column(
     12,
-    tags$h3(
-      tags$span(
-        style = "color:blue",
-        "Seasonality in Supply, Demand, Prices or Grade : What is the difference?"
-      )
-    ),
-    tags$h5(
-      tags$span(style = "color:purple;font-style:italic", "Work In Progress")
-    ),
+
+    tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Seasonality in Supply, Demand, Prices or Grade : What is the difference?")),
+    tags$h5(tags$span(style = "color:fuchsia;font-style:italic", "Work In Progress")),
     shiny::textOutput(ns("season1"))
   ))
 }

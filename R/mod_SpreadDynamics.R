@@ -14,21 +14,30 @@ mod_SpreadDynamics_ui <- function(id){
   tagList(
     shiny::column(
       12,
-      tags$h3(tags$span(style = "color:blue", "Is Structure (c1c2) related to flat price?")),
-      tags$h5(tags$span(style = "color:purple;font-style:italic", "A general relationship not useful for trading purposes.")),
-      tags$h5(tags$span(style = "color:purple;font-style:italic", "What if you reframe the problem by making it conditional upon FP increases from each cyclical low?")),
+
+      tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Is Structure (c1c2) related to flat price?")),
+      tags$ul(
+        tags$li("A general relationship not useful for trading purposes."),
+        tags$li("What if you reframe the problem by making it conditional upon FP increases from each cyclical low?"),
+      ),
       plotly::plotlyOutput(ns("structFlatPrice"), height = "600px"),
-      tags$h3(tags$span(style = "color:blue", "Reframing the Problem as Capacity Utilization.")),
-      tags$h5(tags$span(style = "color:purple;font-style:italic", "Imbalanced markets (close to operational tank tops or bottom) are where it matters.")),
-      tags$h5(tags$span(style = "color:purple;font-style:italic", "Reframe the problem as capacity utilization.")),
-      tags$h5(tags$span(style = "color:purple;font-style:italic", "Use analytics from this chart and predict where spreads should be based on your SD model for storage levels.")),
-      tags$h5(tags$span(style = "color:purple;font-style:italic", "Then compare your results with the current forward curve and if different put a trade on!")),
+
+      tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Reframing the Problem as Capacity Utilization.")),
+      tags$ul(
+        tags$li("Imbalanced markets (close to operational tank tops or bottom) are where it matters."),
+        tags$li("Reframe the problem as capacity utilization."),
+        tags$li("Use analytics from this chart and predict where spreads should be based on your SD model for storage levels."),
+        tags$li("Then compare your results with the current forward curve and if different put a trade on!")
+      ),
       plotly::plotlyOutput(ns("structUtilization"), height = "600px"),
-      tags$h3(tags$span(style = "color:blue", "Shape of intermonth spreads curve")),
-      tags$h5(tags$span(style = "color:purple;font-style:italic", "Why do this? To get a perspective of how monthly time spreads reflect current imbalances in Supply-Demand balances.")),
-      tags$h5(tags$span(style = "color:purple;font-style:italic", "When c1c2 moves in steep backwardation or contango, it is because of CURRENT imbalances.")),
-      tags$h5(tags$span(style = "color:purple;font-style:italic", "Markets price the forward curve of intermonth spreads according to expectations with the information available TODAY.")),
-      tags$h5(tags$span(style = "color:purple;font-style:italic", "Large dislocations in SD balances impact front spreads more as more time is available for supply and demand to re-establish a balance.")),
+
+      tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Shape of intermonth spreads curve")),
+      tags$ul(
+        tags$li("Why do this? To get a perspective of how monthly time spreads reflect current imbalances in Supply-Demand balances."),
+        tags$li("When c1c2 moves in steep backwardation or contango, it is because of CURRENT imbalances."),
+        tags$li("Markets price the forward curve of intermonth spreads according to expectations with the information available TODAY."),
+        tags$li("Large dislocations in SD balances impact front spreads more as more time is available for supply and demand to re-establish a balance.")
+      ),
       shiny::radioButtons(ns("bucket"),
                           "Select width of c1c2 groups e.g. 0.25 will group between -0.125 to +0.125 into the 0 bucket:",
                           choices = seq(0.25,1,0.25),

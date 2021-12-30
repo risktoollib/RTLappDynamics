@@ -13,16 +13,20 @@ mod_Betas_ui <- function(id){
   ns <- NS(id)
   tagList(
     shiny::column(12,
-                  tags$h3(tags$span(style = "color:blue", "Hedge Ratios of Contract #n vs Front Contract")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "Hedge ratios are a function of correlation times the ratio of volatility")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "Notice how they differ when prices go up (bull) and down (bear).")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "Don't apply Finance or statistics without understanding its assumptions!")),
-                  tags$h6(tags$span(style = "color:orange;font-style:italic", "+ Stationarity in its distribution properties.")),
-                  tags$h6(tags$span(style = "color:orange;font-style:italic", "+ No STRUCTURAL changes during the period... a hard assumption to make in physical commodities.")),
+                  tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Hedge Ratios of nth Contract vs Front Contract")),
+                  tags$ul(
+                    tags$li("Hedge ratios are a function of correlation times the ratio of volatility)"),
+                    tags$li("Notice how they differ when prices go up (bull) and down (bear)."),
+                    tags$li("Don't apply Finance or statistics without understanding its assumptions!"),
+                    tags$ol(
+                      tags$li("Stationarity in its distribution properties."),
+                      tags$li("No STRUCTURAL changes during the period... a hard assumption to make in physical commodities.")
+                    )
+                  ),
                   plotly::plotlyOutput(ns("hedgeRatios")),
-                  tags$h5(tags$span(style = "color:purple;font-style:italic", "See how recent betas compare to all data available.")),
+                  tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "See how recent betas compare to all data available.")),
                   shiny::radioButtons(ns("days"),"Select recent # of trading days to compare with long term betas:",choices = c(20,60,120,250), selected = "60", inline = TRUE),
-                  tags$h3(tags$span(style = "color:blue","Betas - Recent Trading Days")),
+                  tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Betas - Recent Trading Days")),
                   plotly::plotlyOutput(ns("betasCompare"))
                   )
   )
