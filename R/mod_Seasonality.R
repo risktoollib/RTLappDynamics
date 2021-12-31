@@ -48,6 +48,7 @@ mod_Seasonality_server <- function(id, r){
 
     # STL statistics
     output$seasonTable <- gt::render_gt({
+      value <- seasonal_strength_year <- seasonal_peak_year <- seasonal_trough_year <- Trend <- Seasonality <- NULL
       r$tsi %>%
         fabletools::features(value, feasts::feat_stl) %>%
         dplyr::transmute(Trend = seasonal_strength_year,

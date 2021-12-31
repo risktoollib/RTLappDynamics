@@ -10,6 +10,7 @@
 #' @import RTL
 #' @import dplyr
 #' @import tidyr
+#' @import tsibble
 
 mod_contract_ui <- function(id){
   ns <- NS(id)
@@ -129,7 +130,7 @@ mod_contract_server <- function(id, r) {
                    r$tsi <- seasonDat %>%
                      tsibble::as_tsibble(key = series, index = date) %>%
                      tsibble::group_by_key() %>%
-                     tsibble::index_by(freq = ~ yearmonth(.)) %>%
+                     tsibble::index_by(freq = ~ tsibble::yearmonth(.)) %>%
                      dplyr::summarise(value = mean(value), .groups = c("keep")) %>%
                      tsibble::fill_gaps()
 
