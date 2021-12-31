@@ -37,6 +37,13 @@ usethis::use_package("PerformanceAnalytics")
 usethis::use_package("timetk")
 usethis::use_package("readr")
 usethis::use_package("bslib")
+usethis::use_package("tsibble")
+usethis::use_package("feasts")
+usethis::use_package("fabletools")
+usethis::use_package("gt")
+
+
+
 
 
 ### not added yet

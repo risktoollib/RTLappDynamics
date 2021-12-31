@@ -79,23 +79,19 @@ mod_SpreadDynamics_server <- function(id, r){
       #shiny::validate(shiny::need(r$contract %in% c("CL","HO","RB"), message = FALSE))
 
       if (r$contract == "CL") {
-        tmp <- rbind(RTL::eiaStocks %>% dplyr::filter(series == "CrudeCushing"),
-                     RTL::eiaStorageCap %>% dplyr::filter(series == "Cushing") %>% dplyr::select(-product))
+        tmp <- rbind(r$stocks, RTL::eiaStorageCap %>% dplyr::filter(series == "Cushing") %>% dplyr::select(-product))
       }
 
       if (r$contract == "RB") {
-        tmp <- rbind(RTL::eiaStocks %>% dplyr::filter(series == "Gasoline"),
-                     RTL::eiaStorageCap %>% dplyr::filter(product == "gasoline") %>% dplyr::select(-product))
+        tmp <- rbind(r$stocks, RTL::eiaStorageCap %>% dplyr::filter(product == "gasoline") %>% dplyr::select(-product))
       }
 
       if (r$contract == "HO") {
-        tmp <- rbind(RTL::eiaStocks %>% dplyr::filter(series == "ULSD"),
-                     RTL::eiaStorageCap %>% dplyr::filter(product == "distillates") %>% dplyr::select(-product))
+        tmp <- rbind(r$stocks, RTL::eiaStorageCap %>% dplyr::filter(product == "distillates") %>% dplyr::select(-product))
       }
 
       if (r$contract == "NG") {
-        tmp <- rbind(RTL::eiaStocks %>% dplyr::filter(series == "NGLower48"),
-                     RTL::eiaStorageCap %>% dplyr::filter(product == "ng") %>% dplyr::select(-product))
+        tmp <- rbind(r$stocks, RTL::eiaStorageCap %>% dplyr::filter(product == "ng") %>% dplyr::select(-product))
       }
 
       tmp %>%

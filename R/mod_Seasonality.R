@@ -7,25 +7,65 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
+#' @import tsibble
+#' @import feasts
+#' @import fabletools
+#' @import gt
 mod_Seasonality_ui <- function(id){
   ns <- NS(id)
   tagList(shiny::column(
     12,
 
-    tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Seasonality in Supply, Demand, Prices or Grade : What is the difference?")),
-    tags$h5(tags$span(style = "color:fuchsia;font-style:italic", "Work In Progress")),
-    shiny::textOutput(ns("season1"))
+    tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "About Seasonality...")),
+    tags$ul(
+      tags$li("In prices, supply/demand or grade specification?"),
+      tags$li("True seasonality occurs when supply and demand need to be balanced by storage."),
+      tags$li("When storage is the balancing mechanism, storage agents need to be compensated for it which creates the seasonality in prices."),
+      tags$li("This occurs ONLY when seasonality in demand CANNOT be met with the by the same flexibility in supply."),
+      tags$li("US Natural Gas is a prime example whereas Crude oil has little physical constraints in global movements.")
+    ),
+    shiny::plotOutput(ns("seasonPlot")),
+    tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Seasonality and Trend Strength")),
+    tags$p("This area is for discussion with whomever presents this app."),
+    tags$p("I highly recommend ",a("Forecasting: Principles and Practice by Rob J Hyndman and George Athanasopoulos",href="https://otexts.com/fpp3/",.noWS = "outside")),
+    tags$p("The specific chapter for interpretion of this table is at ",a("STL Features",href="https://otexts.com/fpp3/stlfeatures.html",.noWS = "outside")),
+    gt::gt_output(ns("seasonTable"))
   ))
 }
 
 #' Seasonality Server Functions
 #'
 #' @noRd
-mod_Seasonality_server <- function(id){
+mod_Seasonality_server <- function(id, r){
   moduleServer( id, function(input, output, session){
+
     ns <- session$ns
-    output$season1 <- shiny::renderText({
-      shinipsum::random_text(nchars = 200)
+
+    # plot
+    output$seasonPlot <- shiny::renderPlot({
+      r$tsi %>% feasts::gg_subseries(value)
+    })
+
+    # STL statistics
+    output$seasonTable <- gt::render_gt({
+      r$tsi %>%
+        fabletools::features(value, feasts::feat_stl) %>%
+        dplyr::transmute(Trend = seasonal_strength_year,
+                         Seasonality = seasonal_strength_year,
+                         Peak = month.abb[seasonal_peak_year],
+                         Trough = month.abb[seasonal_trough_year]) %>%
+        gt::gt() %>%
+        gt::tab_header(
+          title = "Trend and Seasonality Statistics",
+          subtitle = "Seasonality and Trends in percentage statistics from zero to one."
+          ) %>%
+        gt::fmt_percent(columns = c(Trend,Seasonality), decimals = 0) %>%
+        gt::data_color(
+          columns = c(Trend,Seasonality),
+          colors = scales::col_numeric(palette = c("white", "yellow", "orange", "red"),
+            domain = c(0, 1))
+        ) %>%
+        gt::cols_align(align = "center")
     })
 
   })

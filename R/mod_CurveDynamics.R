@@ -20,7 +20,7 @@ mod_CurveDynamics_ui <- function(id){
                     tags$li("What can you infer from the volality of the front contract?"),
                     tags$li("How is the forward curve moving along with flat price and why?")
                   ),
-                  shiny::plotOutput(ns("fwdCurve"))
+                  shiny::plotOutput(ns("fwdCurve"), height = "1000px")
                   )
   )
 }
@@ -32,7 +32,6 @@ mod_CurveDynamics_server <- function(id, r) {
 
   moduleServer(id,
                function(input, output, session) {
-                # browser()
                  output$fwdCurve <-  renderPlot({
                    df <- r$datWide
                    cmdty <- r$cmdty

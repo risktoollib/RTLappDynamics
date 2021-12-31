@@ -9,9 +9,12 @@ Imports:
     bslib,
     config (>= 0.3.1),
     dplyr,
+    fabletools,
+    feasts,
     ggplot2,
     ggtext,
     golem (>= 0.3.1),
+    gt,
     lubridate,
     PerformanceAnalytics,
     plotly,
@@ -26,6 +29,7 @@ Imports:
     tibbletime,
     tidyr,
     timetk,
+    tsibble,
     zoo
 Encoding: UTF-8
 RoxygenNote: 7.1.2

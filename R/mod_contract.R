@@ -112,6 +112,27 @@ mod_contract_server <- function(id, r) {
                    betas <- RTL::rolladjust(x = betas,commodityname = r$cmdty,rolltype = c("Last.Trade"))
                    r$betas <- betas %>% dplyr::filter(!grepl("2020-04-20|2020-04-21",date))
 
+                   # assigns data for eia storage levels
+
+                   if (r$contract == "CL") {r$stocks <- RTL::eiaStocks %>% dplyr::filter(series == "CrudeCushing")}
+                   if (r$contract == "RB") {r$stocks <- RTL::eiaStocks %>% dplyr::filter(series == "Gasoline")}
+                   if (r$contract == "HO") {r$stocks <- RTL::eiaStocks %>% dplyr::filter(series == "ULSD")}
+                   if (r$contract == "NG") {r$stocks <- RTL::eiaStocks %>% dplyr::filter(series == "NGLower48")}
+
+                   # assigns tsi object for seasonality server outputs
+
+                   seasonDat <- tsi <- series <- value <- NULL
+                   seasonDat <- dplyr::inner_join(r$stocks %>% dplyr::select(-series),
+                                                  r$datWide %>% dplyr::select(1:2)) %>% dplyr::rename(stocks = value, price = 3) %>%
+                     tidyr::pivot_longer(-date, names_to = "series",values_to = "value")
+
+                   r$tsi <- seasonDat %>%
+                     tsibble::as_tsibble(key = series, index = date) %>%
+                     tsibble::group_by_key() %>%
+                     tsibble::index_by(freq = ~ yearmonth(.)) %>%
+                     dplyr::summarise(value = mean(value), .groups = c("keep")) %>%
+                     tsibble::fill_gaps()
+
                  })
                })
 }
