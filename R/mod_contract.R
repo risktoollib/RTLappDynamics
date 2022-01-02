@@ -10,7 +10,6 @@
 #' @import RTL
 #' @import dplyr
 #' @import tidyr
-#' @import tsibble
 
 mod_contract_ui <- function(id){
   ns <- NS(id)

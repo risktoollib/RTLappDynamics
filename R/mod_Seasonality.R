@@ -7,7 +7,6 @@
 #' @noRd
 #'
 #' @importFrom shiny NS tagList
-#' @import tsibble
 #' @import feasts
 #' @import fabletools
 #' @import gt

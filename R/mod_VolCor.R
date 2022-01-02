@@ -10,7 +10,6 @@
 #' @importFrom shiny NS tagList
 #' @importFrom stats sd
 #' @importFrom scales label_percent
-#' @importFrom zoo index coredata
 #' @rawNamespace import(plotly, except = last_plot)
 
 mod_VolCor_ui <- function(id){
