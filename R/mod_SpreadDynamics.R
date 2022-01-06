@@ -18,14 +18,14 @@ mod_SpreadDynamics_ui <- function(id){
       tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Is Structure (c1c2) related to flat price?")),
       tags$ul(
         tags$li("A general relationship not useful for trading purposes."),
-        tags$li("What if you reframe the problem by making it conditional upon FP increases from each cyclical low?"),
+        tags$li("What if one reframes the problem by making it conditional upon flat price increases from each cyclical low?"),
       ),
       plotly::plotlyOutput(ns("structFlatPrice"), height = "600px"),
 
       tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Reframing the Problem as Capacity Utilization.")),
       tags$ul(
         tags$li("Imbalanced markets (close to operational tank tops or bottom) are where it matters."),
-        tags$li("Reframe the problem as capacity utilization."),
+        tags$li("Reframe the problem as capacity utilization which better illustrates fixed capacity economics."),
         tags$li("Use analytics from this chart and predict where spreads should be based on your SD model for storage levels."),
         tags$li("Then compare your results with the current forward curve and if different put a trade on!")
       ),

@@ -13,12 +13,12 @@ mod_CurveDynamics_ui <- function(id){
   ns <- NS(id)
   tagList(
     shiny::column(12,
-                  tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Forming your hypotheses of the pricing dynamics")),
+                  tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Forming your hypotheses on the pricing dynamics")),
                   tags$ul(
-                    tags$li("Root your thinking on fundamentals (SD Balance and the physical supply chain)"),
-                    tags$li("Forward prices are the expected spot price with today's information set."),
+                    tags$li("Root your thinking on fundamentals (SD Balance and the physical supply chain)."),
+                    tags$li("Forward prices are expected spot prices with today's information set."),
                     tags$li("What can you infer from the volality of the front contract?"),
-                    tags$li("How is the forward curve moving along with flat price and why?")
+                    tags$li("How is the forward curve moving along with the front contract and why?")
                   ),
                   shiny::plotOutput(ns("fwdCurve"), height = "1000px")
                   )

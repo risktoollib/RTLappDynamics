@@ -19,15 +19,15 @@ mod_Seasonality_ui <- function(id){
     tags$ul(
       tags$li("In prices, supply/demand or grade specification?"),
       tags$li("True seasonality occurs when supply and demand need to be balanced by storage."),
-      tags$li("When storage is the balancing mechanism, storage agents need to be compensated for it which creates the seasonality in prices."),
-      tags$li("This occurs ONLY when seasonality in demand CANNOT be met with the by the same flexibility in supply."),
+      tags$li("When storage is the balancing mechanism, storage agents need to be compensated for it which creates seasonality in prices."),
+      tags$li("This occurs ONLY when seasonality in demand CANNOT be met by the same current period supply."),
       tags$li("US Natural Gas is a prime example whereas Crude oil has little physical constraints in global movements.")
     ),
     shiny::plotOutput(ns("seasonPlot")),
     tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Seasonality and Trend Strength")),
     tags$p("This area is for discussion with whomever presents this app."),
-    tags$p("I highly recommend ",a("Forecasting: Principles and Practice by Rob J Hyndman and George Athanasopoulos",href="https://otexts.com/fpp3/",.noWS = "outside")),
-    tags$p("The specific chapter for interpretion of this table is at ",a("STL Features",href="https://otexts.com/fpp3/stlfeatures.html",.noWS = "outside")),
+    tags$p("I highly recommend ",a("Forecasting: Principles and Practice by Rob J Hyndman and George Athanasopoulos",href = "https://otexts.com/fpp3/",.noWS = "outside")),
+    tags$p("The specific chapter for interpretion of this table is at ",a("STL Features",href = "https://otexts.com/fpp3/stlfeatures.html",.noWS = "outside")),
     gt::gt_output(ns("seasonTable"))
   ))
 }
