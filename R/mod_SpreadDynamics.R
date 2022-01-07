@@ -18,7 +18,7 @@ mod_SpreadDynamics_ui <- function(id){
       tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Is Structure (c1c2) related to flat price?")),
       tags$ul(
         tags$li("A general relationship not useful for trading purposes."),
-        tags$li("What if one reframes the problem by making it conditional upon flat price increases from each cyclical low?"),
+        tags$li("But you could reframe the problem by making it conditional upon flat price increases from each cyclical low which we don't here."),
       ),
       plotly::plotlyOutput(ns("structFlatPrice"), height = "600px"),
 

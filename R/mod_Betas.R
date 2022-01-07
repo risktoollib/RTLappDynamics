@@ -15,7 +15,7 @@ mod_Betas_ui <- function(id){
     shiny::column(12,
                   tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Hedge Ratios of nth Contract vs Front Contract")),
                   tags$ul(
-                    tags$li("Hedge ratios are a function of correlation times the ratio of volatility)"),
+                    tags$li("Hedge ratios are a function of correlation times the ratio of volatility."),
                     tags$li("Notice how they differ when prices go up (bull) and down (bear)."),
                     tags$li("Don't apply Finance or statistics without understanding its assumptions!"),
                     tags$ol(

@@ -22,6 +22,9 @@ mod_Seasonality_ui <- function(id){
       tags$li("Storage agents are compensated for storing which creates seasonality in prices via a market contango between build and draw periods"),
       tags$li("US Natural Gas is a prime example whereas Crude oil has little physical constraints in global movements.")
     ),
+    tags$br(),
+    shiny::radioButtons(ns("seasonSeries"),"Select seasonality on prices or stocks:",choices = c("price","stocks"), selected = "stocks", inline = TRUE),
+    tags$br(),
     shiny::plotOutput(ns("seasonPlot")),
     tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Seasonality and Trend Strength")),
     tags$p("This area is for discussion with whomever presents this app."),
@@ -41,13 +44,16 @@ mod_Seasonality_server <- function(id, r){
 
     # plot
     output$seasonPlot <- shiny::renderPlot({
-      r$tsi %>% feasts::gg_subseries(value)
+      r$tsi %>%
+        dplyr::filter(series == input$seasonSeries) %>%
+        feasts::gg_subseries(value)
     })
 
     # STL statistics
     output$seasonTable <- gt::render_gt({
       value <- seasonal_strength_year <- seasonal_peak_year <- seasonal_trough_year <- Trend <- Seasonality <- NULL
       r$tsi %>%
+        dplyr::filter(series == input$seasonSeries) %>%
         fabletools::features(value, feasts::feat_stl) %>%
         dplyr::transmute(Trend = seasonal_strength_year,
                          Seasonality = seasonal_strength_year,
