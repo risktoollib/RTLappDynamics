@@ -15,12 +15,11 @@ mod_Seasonality_ui <- function(id){
   tagList(shiny::column(
     12,
 
-    tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "About Seasonality...")),
+    tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "About seasonality...")),
     tags$ul(
-      tags$li("In prices, supply/demand or grade specification?"),
-      tags$li("True seasonality occurs when supply and demand need to be balanced by storage."),
-      tags$li("When storage is the balancing mechanism, storage agents need to be compensated for it which creates seasonality in prices."),
-      tags$li("This occurs ONLY when seasonality in demand CANNOT be met by the same current period supply."),
+      tags$li("In prices, supply, demand or due to grade specification?"),
+      tags$li("True seasonality occurs when storage is required to balance supply and demand at a seasonal periodicity."),
+      tags$li("Storage agents are compensated for storing which creates seasonality in prices via a market contango between build and draw periods"),
       tags$li("US Natural Gas is a prime example whereas Crude oil has little physical constraints in global movements.")
     ),
     shiny::plotOutput(ns("seasonPlot")),

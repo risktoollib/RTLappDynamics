@@ -5,8 +5,9 @@
 #' @param id,input,output,session Internal parameters for {shiny}.
 #'
 #' @noRd
-#'
+#' @import corrr
 #' @import ggplot2
+#' @import gt
 #' @importFrom shiny NS tagList
 #' @importFrom stats sd
 #' @importFrom scales label_percent
@@ -17,8 +18,9 @@ mod_VolCor_ui <- function(id){
   tagList(
     shiny::column(12,
                   tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Volatility is a function of Delivery Timing")),
-                  tags$h5(tags$span(style = "color:white;font-style:italic", "Why would think so in the context of economics?")),
+                  tags$h5(tags$span(style = "color:white;font-style:italic", "Why would you think so in the context of economics?")),
                   shiny::plotOutput(ns("volByDelivery")),
+                  tags$br(),
                   plotly::plotlyOutput(ns("volBoxplot")),
                   tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Volatility is NOT constant through time")),
                   tags$ul(
@@ -34,7 +36,7 @@ mod_VolCor_ui <- function(id){
                     tags$li("Beware of using continuous contracts in seasonal commodities... Why?"),
                     tags$li("So what are the implications for spread trading? NEXT TAB")
                   ),
-                  shiny::plotOutput(ns("correlation"), height = "600px")
+                  gt::gt_output(ns("correlation"))
     )
   )
 }
@@ -123,9 +125,18 @@ mod_VolCor_server <- function(id, r) {
                        yaxis = list(title = "Annualized Volality", tickformat = ".0%")
                      )
                  })
-                 output$correlation <- renderPlot({
-                   tmp <- r$retWide %>% timetk::tk_xts(rename_index = "date")
-                   PerformanceAnalytics::chart.Correlation(tmp[, 1:6])
+                 output$correlation <- gt::render_gt({
+                   x <- NULL
+                   x <- r$retWide %>% dplyr::select(-date)
+                   corrr::correlate(x)[1:12,1:13] %>%
+                     corrr::shave(upper = FALSE) %>%
+                     corrr::fashion(leading_zeros = TRUE) %>%
+                     gt::gt() %>%
+                     gt::tab_header(
+                       title = "Correlations",
+                       subtitle = ""
+                     ) %>%
+                     gt::cols_align(align = "center")
                  })
 
                })

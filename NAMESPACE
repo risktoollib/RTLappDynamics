@@ -2,6 +2,7 @@
 
 export(run_app)
 import(RTL)
+import(corrr)
 import(dplyr)
 import(fabletools)
 import(feasts)

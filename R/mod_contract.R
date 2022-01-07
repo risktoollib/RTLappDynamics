@@ -32,25 +32,28 @@ mod_contract_server <- function(id, r) {
                    r$contract <- input$contract
 
                    # avoid no visible bindings for local vars
-                   dflong <- series <- value <- c1c2 <- fp <- . <- x <- NULL
+                   dflong <- series <- value <- c1c2 <- fp <- . <- x <- tmp <- NULL
 
-                   # assigns computed datLong
-                   tmp <- RTL::dflong %>%
+                   # assigns computed datLong and datWide
+                   x <- RTL::dfwide %>%
+                     dplyr::select(date, contains(input$contract)) %>%
+                     tidyr::drop_na()
+                   #dplyr::filter(grepl(input$contract, series)) %>%
+                   #tidyr::pivot_wider(names_from = series, values_from = value) %>%
+                   #dplyr::select_if(~ !any(is.na(.)))
+                   x <- x %>%
+                     tidyr::pivot_longer(-date, "series", "value") %>%
                      dplyr::mutate(value = case_when(
                        grepl("HO", series) ~ value * 42,
                        grepl("RB", series) ~ value * 42,
                        TRUE ~ value
-                     )) %>%
-                     dplyr::filter(grepl(input$contract, series))
+                     ))
                    if (input$contract == "CL") {
-                     tmp <- tmp %>% dplyr::filter(date != "2020-04-20")
+                     x <- x %>% dplyr::filter(date != "2020-04-20")
                    }
-                   r$datLong <- tmp
 
-                   # assigns computed datWide
-                   r$datWide <- tmp %>%
-                     dplyr::filter(grepl(input$contract, series)) %>%
-                     tidyr::pivot_wider(names_from = series, values_from = value)
+                   r$datLong <- x
+                   r$datWide <- x %>% tidyr::pivot_wider(names_from = series,values_from = value)
 
                    # assigns cmdty for RTL::expiry_table
                    if (input$contract == "CL") {r$cmdty <- "cmewti"}

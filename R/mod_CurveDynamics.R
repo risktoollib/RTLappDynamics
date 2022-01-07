@@ -15,12 +15,15 @@ mod_CurveDynamics_ui <- function(id){
     shiny::column(12,
                   tags$h3(tags$span(style = "color:lime;font-style: italic;font-size:1.0em", "Forming your hypotheses on the pricing dynamics")),
                   tags$ul(
-                    tags$li("Root your thinking on fundamentals (SD Balance and the physical supply chain)."),
-                    tags$li("Forward prices are expected spot prices with today's information set."),
-                    tags$li("What can you infer from the volality of the front contract?"),
-                    tags$li("How is the forward curve moving along with the front contract and why?")
+                    tags$li("Root your thinking on fundamentals:"),
+                    tags$ul(
+                      tags$li("The physical supply chain from production to end users."),
+                      tags$li("Supply-Demand ('SD') balances.")
+                    ),
+                    tags$li("Forward prices are the current expection of future spot prices with today's information set."),
+                    tags$li("What can you infer from the volality of the front contract and its transmission mechanism in contracts for later delivery?")
                   ),
-                  shiny::plotOutput(ns("fwdCurve"), height = "1000px")
+                  shiny::plotOutput(ns("fwdCurve"), height = "800px")
                   )
   )
 }
