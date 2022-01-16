@@ -9,9 +9,9 @@
 and trading analysts in Universities and commodity-trading
 enterprises.***
 
-# Why this app?
+# RTLappDynamics
 
-It was designed and shared publicly to support the following:
+It is designed and shared publicly to support the following:
 
 -   Support a live walk-though of the dynamics of commodity markets by
     an experienced market professional. Whether this a non-technical

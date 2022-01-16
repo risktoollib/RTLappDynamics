@@ -19,9 +19,9 @@ knitr::opts_chunk$set(
 
 ***Part of a series of Shiny Apps to support education of risk managers and trading analysts in Universities and commodity-trading enterprises.***
 
-# Why this app?
+# RTLappDynamics
 
-It was designed and shared publicly to support the following:
+It is designed and shared publicly to support the following:
 
 + Support a live walk-though of the dynamics of commodity markets by an experienced market professional. Whether this a non-technical audience or at the start of technical training risk managers or trading analysts, these concepts are critical to anyone with either interest or current governance accountability in these markets.
 
