@@ -18,10 +18,24 @@ app_ui <- function(request) {
                             "progress-bar-bg" = "lime"),
     # Leave this function for adding external resources
     golem_add_external_resources(),
+    #<img src="https://i.imgur.com/XqpQZwi.png" width=300 />
     # UI logic
     titlePanel("Commodities Pricing Dynamics"),
-    tags$h5(tags$span(style = "color:White;;font-size:0.8em;font-style:italic", "created by pcote@ualberta.ca"),
-            tags$a(href="https://www.linkedin.com/in/philippe-cote-88b1769/",icon("linkedin","My Profile",target = "_blank"))),
+    tags$h5(
+      tags$span(style = "color:White;;font-size:0.8em;font-style:italic", "created by pcote@ualberta.ca"),
+      tags$a(href = "https://www.linkedin.com/in/philippe-cote-88b1769/", icon("linkedin", "My Profile", target = "_blank")),
+      tags$span("    "),
+      tags$span(style = "color:White;;font-size:0.8em;font-style:italic", "data from "),
+      tags$a(
+        href = "http://www-dev.morningstarcommodity.com/",
+        tags$img(
+          src = "https://i.imgur.com/XqpQZwi.png",
+          title = "Example Image Link",
+          width = "100",
+          height = "30"
+        )
+      )
+    ),
     mod_contract_ui("contract_ui_1"),
     tags$h5(tags$span(style = "color:cyan;font-size:0.7em", "units are $/bbl for oil & products, $/mmBtu for NG.")),
     shiny::tabsetPanel(
