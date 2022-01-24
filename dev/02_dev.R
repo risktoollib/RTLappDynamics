@@ -19,7 +19,7 @@
 ## Dependencies ----
 ## Add one line by package you want to add as dependency
 attachment::att_from_rscripts()
-usethis::use_package("shinipsum")
+#usethis::use_package("shinipsum")
 usethis::use_package("thinkr")
 usethis::use_package("shiny")
 usethis::use_package("RTL")
