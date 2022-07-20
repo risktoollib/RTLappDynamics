@@ -2,9 +2,12 @@ Package: RTLappDynamics
 Title: Commodity Pricing Dynamics
 Version: 0.0.1
 Date: 2022-01-23
-Authors@R: person('Philippe', 'Cote', email = 'pcote@ualberta.ca', role = c('cre', 'aut'))
+Authors@R: 
+    person("Philippe", "Cote", , "pcote@ualberta.ca", role = c("cre", "aut"))
 Description: An interactive journey into commodity trading.
 License: MIT + file LICENSE
+URL: https://github.com/risktoollib/RTLappDynamics
+BugReports: https://github.com/risktoollib/RTLappDynamics/issues
 Imports: 
     bslib,
     config (>= 0.3.1),
@@ -13,33 +16,27 @@ Imports:
     fabletools,
     feasts,
     ggplot2,
-    ggtext,
     golem (>= 0.3.1),
     gt,
     lubridate,
     plotly,
-    processx,
     readr,
-    rlang,
     RTL,
     scales,
     shiny (>= 1.7.1),
-    thinkr,
+    stats,
     tibbletime,
     tidyr,
-    timetk,
     tsibble,
     zoo
-Encoding: UTF-8
-RoxygenNote: 7.1.2
 Suggests: 
-    rmarkdown,
     knitr,
+    rmarkdown,
     spelling,
-    testthat (>= 3.0.0),
-    covr
+    testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
+Encoding: UTF-8
 Language: en-US
-URL: https://github.com/risktoollib/RTLappDynamics
-BugReports: https://github.com/risktoollib/RTLappDynamics/issues
-VignetteBuilder: knitr
+RoxygenNote: 7.2.0
