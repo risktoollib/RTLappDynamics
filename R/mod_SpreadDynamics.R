@@ -77,9 +77,10 @@ mod_SpreadDynamics_server <- function(id, r){
 
     output$structUtilization <- plotly::renderPlotly({
       #shiny::validate(shiny::need(r$contract %in% c("CL","HO","RB"), message = FALSE))
+      browser()
 
       if (r$contract == "CL") {
-        tmp <- rbind(r$stocks, RTL::eiaStorageCap %>% dplyr::filter(series == "Cushing") %>% dplyr::select(-product))
+        tmp <- rbind(r$stocks %>% dplyr::mutate(series = "stocks"), RTL::eiaStorageCap %>% dplyr::filter(series == "Cushing") %>% dplyr::select(-product))
       }
 
       if (r$contract == "RB") {

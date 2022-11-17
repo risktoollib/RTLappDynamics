@@ -41,14 +41,13 @@ usethis::use_package("tsibble")
 usethis::use_package("feasts")
 usethis::use_package("fabletools")
 usethis::use_package("gt")
+usethis::use_package("rlang")
 
-
-
-
+spelling::spell_check_package()
+spelling::update_wordlist()
+devtools::document()
 
 ### not added yet
-
-
 
 ## Add modules ----
 ## Create a module infrastructure in R/

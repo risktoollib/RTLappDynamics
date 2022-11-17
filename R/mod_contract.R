@@ -13,8 +13,7 @@
 
 mod_contract_ui <- function(id){
   ns <- NS(id)
-  cc <- sort(unique(gsub(pattern = "[0-9]+",replacement = "",x = RTL::dflong$series))[1:6])
-  cc <- cc[!cc %in% c("BRN","WCW")]
+  cc <- c("CL","NG","HO","RB")
   tagList(
     shiny::radioButtons(ns("contract"),"Select Contract",choices = cc, selected = "CL", inline = TRUE),
   )
@@ -122,11 +121,14 @@ mod_contract_server <- function(id, r) {
                    if (r$contract == "HO") {r$stocks <- RTL::eiaStocks %>% dplyr::filter(series == "ULSD")}
                    if (r$contract == "NG") {r$stocks <- RTL::eiaStocks %>% dplyr::filter(series == "NGLower48")}
 
+                   r$stocks <- r$stocks %>% dplyr::ungroup() %>% dplyr::select(-series)
                    # assigns tsi object for seasonality server outputs
 
                    seasonDat <- tsi <- series <- value <- NULL
                    seasonDat <- dplyr::inner_join(r$stocks %>% dplyr::select(-series),
                                                   r$datWide %>% dplyr::select(1:2)) %>% dplyr::rename(stocks = value, price = 3) %>%
+                     dplyr::ungroup() %>%
+                     dplyr::select(-series) %>%
                      tidyr::pivot_longer(-date, names_to = "series",values_to = "value")
 
                    r$tsi <- seasonDat %>%

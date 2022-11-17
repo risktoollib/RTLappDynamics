@@ -41,7 +41,7 @@ mod_Seasonality_server <- function(id, r){
   moduleServer( id, function(input, output, session){
 
     ns <- session$ns
-
+    series <- NULL
     # plot
     output$seasonPlot <- shiny::renderPlot({
       r$tsi %>%
@@ -57,8 +57,8 @@ mod_Seasonality_server <- function(id, r){
         fabletools::features(value, feasts::feat_stl) %>%
         dplyr::transmute(Trend = seasonal_strength_year,
                          Seasonality = seasonal_strength_year,
-                         Peak = month.abb[seasonal_peak_year],
-                         Trough = month.abb[seasonal_trough_year]) %>%
+                         Peak = month.abb[seasonal_peak_year + 1],
+                         Trough = month.abb[seasonal_trough_year + 1]) %>%
         gt::gt() %>%
         gt::tab_header(
           title = "Trend and Seasonality Statistics",
