@@ -22,15 +22,15 @@ app_ui <- function(request) {
     # UI logic
     titlePanel("Commodities Pricing Dynamics"),
     tags$h5(
-      tags$span(style = "color:White;;font-size:0.8em;font-style:italic", "created by pcote@ualberta.ca"),
+      tags$span(style = "color:white;;font-size:0.8em;font-style:italic", "created by pcote@ualberta.ca"),
       tags$a(href = "https://www.linkedin.com/in/philippe-cote-88b1769/", icon("linkedin", "My Profile", target = "_blank")),
-      tags$span("    "),
-      tags$span(style = "color:White;;font-size:0.8em;font-style:italic", "data from "),
+      tags$span(style = "color:#333333"," "),
+      tags$span(style = "color:white;font-size:0.8em;font-style:italic", "data from "),
       tags$a(
-        href = "http://www-dev.morningstarcommodity.com/",
+        href = "https://commodities.morningstar.com/#/",
         tags$img(
-          src = "https://i.imgur.com/XqpQZwi.png",
-          title = "Example Image Link",
+          src = "https://commodities.morningstar.com/img/Mstar-logo-50px.e8433154.svg",
+          title = "Morningstar Commodities",
           width = "100",
           height = "30"
         )
