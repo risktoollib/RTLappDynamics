@@ -128,7 +128,10 @@ mod_VolCor_server <- function(id, r) {
                  output$correlation <- gt::render_gt({
                    x <- NULL
                    x <- r$retWide %>% dplyr::select(-date)
-                   corrr::correlate(x, method = "kendall")[1:12,1:13] %>%
+                   corrr::correlate(x,
+                                    use = "pairwise.complete.obs",
+                                    method = "kendall",
+                                    quiet = TRUE)[1:12,1:13] %>%
                      corrr::shave(upper = FALSE) %>%
                      corrr::fashion(leading_zeros = TRUE) %>%
                      gt::gt() %>%
