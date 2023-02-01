@@ -69,7 +69,7 @@ mod_VolCor_server <- function(id, r) {
                    tmp <- r$retWide
                    lims <- (max(abs(tmp[, -1])) %/% 0.05 + 1) * 0.05
                    tmp %>%
-                     tidyr::pivot_longer(-date, "series", "value") %>%
+                     tidyr::pivot_longer(-date, names_to = "series", values_to = "value") %>%
                      plotly::plot_ly(
                        y = ~ value,
                        color = ~ series,

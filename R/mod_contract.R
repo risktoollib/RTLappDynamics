@@ -41,7 +41,7 @@ mod_contract_server <- function(id, r) {
                    #tidyr::pivot_wider(names_from = series, values_from = value) %>%
                    #dplyr::select_if(~ !any(is.na(.)))
                    x <- x %>%
-                     tidyr::pivot_longer(-date, "series", "value") %>%
+                     tidyr::pivot_longer(-date, names_to = "series", values_to = "value") %>%
                      dplyr::mutate(value = case_when(
                        grepl("HO", series) ~ value * 42,
                        grepl("RB", series) ~ value * 42,
