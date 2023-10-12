@@ -102,7 +102,7 @@ mod_SpreadDynamics_server <- function(id, r){
         tidyr::drop_na() %>%
         dplyr::mutate(utilization = stocks / capacity,
                       year = lubridate::year(date)) %>%
-        dplyr::left_join(r$spdDynamics %>% dplyr::select(date, c1c2)) %>%
+        dplyr::left_join(r$spdDynamics %>% dplyr::select(date, c1c2),by = join_by(date)) %>%
         tidyr::drop_na() %>%
         plotly::plot_ly(
           x = ~c1c2 ,

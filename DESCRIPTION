@@ -1,7 +1,7 @@
 Package: RTLappDynamics
 Title: Commodity Pricing Dynamics
 Version: 0.1.1
-Date: 2023-01-08
+Date: 2023-10-12
 Authors@R: 
     person("Philippe", "Cote", , "pcote@ualberta.ca", role = c("cre", "aut"))
 Description: An interactive journey into commodity trading.

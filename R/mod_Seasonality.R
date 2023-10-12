@@ -67,7 +67,7 @@ mod_Seasonality_server <- function(id, r){
         gt::fmt_percent(columns = c(Trend,Seasonality), decimals = 0) %>%
         gt::data_color(
           columns = c(Trend,Seasonality),
-          colors = scales::col_numeric(palette = c("white", "yellow", "orange", "red"),
+          fn = scales::col_numeric(palette = c("white", "yellow", "orange", "red"),
             domain = c(0, 1))
         ) %>%
         gt::cols_align(align = "center")

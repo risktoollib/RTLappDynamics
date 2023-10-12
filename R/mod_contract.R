@@ -126,7 +126,9 @@ mod_contract_server <- function(id, r) {
 
                    seasonDat <- tsi <- series <- value <- NULL
                    seasonDat <- dplyr::inner_join(r$stocks %>% dplyr::select(-series),
-                                                  r$datWide %>% dplyr::select(1:2)) %>% dplyr::rename(stocks = value, price = 3) %>%
+                                                  r$datWide %>% dplyr::select(1:2),
+                                                  by = join_by(date)) %>%
+                     dplyr::rename(stocks = value, price = 3) %>%
                      dplyr::ungroup() %>%
                      dplyr::select(-series) %>%
                      tidyr::pivot_longer(-date, names_to = "series",values_to = "value")
