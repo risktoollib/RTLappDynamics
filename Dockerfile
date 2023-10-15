@@ -26,7 +26,7 @@ RUN Rscript -e 'remotes::install_version("gt",upgrade="never", version = "0.9.0"
 RUN Rscript -e 'remotes::install_version("golem",upgrade="never", version = "0.4.1")'
 RUN Rscript -e 'remotes::install_version("feasts",upgrade="never", version = "0.3.1")'
 RUN Rscript -e 'remotes::install_version("corrr",upgrade="never", version = "0.4.4")'
-RUN Rscript -e 'remotes::install_version("rugarch",upgrade="never", version = "0.4.4")'
+RUN Rscript -e 'remotes::install_version("rugarch",upgrade="always")'
 
 RUN mkdir /build_zone
 ADD . /build_zone
