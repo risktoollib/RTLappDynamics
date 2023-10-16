@@ -42,6 +42,8 @@ usethis::use_package("feasts")
 usethis::use_package("fabletools")
 usethis::use_package("gt")
 usethis::use_package("rlang")
+usethis::use_package("rugarch")
+
 
 spelling::spell_check_package()
 spelling::update_wordlist()
